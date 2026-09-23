@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quick Notes</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= LOGIN / CREATE ACCOUNT ================= -->
+
+    <div id="authPage" class="auth-page">
+
+        <div class="auth-box">
+
+            <h1>📝 Quick Notes</h1>
+
+            <p class="subtitle">
+                Save your notes and PDF files easily
+            </p>
+
+
+            <!-- Tabs -->
+
+            <div class="tabs">
+
+                <button
+                    id="loginTab"
+                    class="tab active"
+                    type="button">
+                    Login
+                </button>
+
+                <button
+                    id="registerTab"
+                    class="tab"
+                    type="button">
+                    Create Account
+                </button>
+
+            </div>
+
+
+            <!-- LOGIN FORM -->
+
+            <form
+                id="loginForm"
+                autocomplete="off">
+
+                <label for="loginUsername">
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="loginUsername"
+                    placeholder="Enter username"
+                    autocomplete="off"
+                    required
+                >
+
+
+                <label for="loginPassword">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter password"
+                    autocomplete="new-password"
+                    required
+                >
+
+
+                <button
+                    type="submit"
+                    class="main-btn">
+                    Login
+                </button>
+
+            </form>
+
+
+            <!-- CREATE ACCOUNT FORM -->
+
+            <form
+                id="registerForm"
+                class="hidden"
+                autocomplete="off">
+
+                <label for="registerUsername">
+                    Create Username
+                </label>
+
+                <input
+                    type="text"
+                    id="registerUsername"
+                    placeholder="Create username"
+                    autocomplete="off"
+                    required
+                >
+
+
+                <label for="registerPassword">
+                    Create Password
+                </label>
+
+                <input
+                    type="password"
+                    id="registerPassword"
+                    placeholder="Create password"
+                    autocomplete="new-password"
+                    required
+                >
+
+
+                <label for="confirmPassword">
+                    Confirm Password
+                </label>
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm password"
+                    autocomplete="new-password"
+                    required
+                >
+
+
+                <button
+                    type="submit"
+                    class="main-btn">
+                    Create Account
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= MAIN APPLICATION ================= -->
+
+    <div
+        id="appPage"
+        class="hidden">
+
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+            <h2>
+                📝 Quick Notes
+            </h2>
+
+
+            <div class="header-right">
+
+                <span id="welcomeUser"></span>
+
+                <button
+                    id="themeBtn"
+                    class="small-btn"
+                    type="button">
+                    🌙
+                </button>
+
+                <button
+                    id="logoutBtn"
+                    class="logout-btn"
+                    type="button">
+                    Logout
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- MAIN -->
+
+        <div class="main-container">
+
+
+            <!-- SIDEBAR -->
+
+            <aside class="sidebar">
+
+                <button
+                    class="menu-btn active"
+                    data-page="notesPage"
+                    type="button">
+                    📝 Notes
+                </button>
+
+
+                <button
+                    class="menu-btn"
+                    data-page="pdfPage"
+                    type="button">
+                    📄 PDF Files
+                </button>
+
+
+                <button
+                    class="menu-btn"
+                    data-page="helpPage"
+                    type="button">
+                    ℹ️ Help
+                </button>
+
+
+                <!-- DATE AND TIME -->
+
+                <div class="clock-box">
+
+                    <div id="date"></div>
+
+                    <div id="time"></div>
+
+                </div>
+
+            </aside>
+
+
+            <!-- CONTENT -->
+
+            <main class="content">
+
+
+                <!-- ================= NOTES PAGE ================= -->
+
+                <section
+                    id="notesPage"
+                    class="page">
+
+
+                    <div class="page-title">
+
+                        <div>
+
+                            <h1>
+                                My Quick Notes
+                            </h1>
+
+                            <p>
+                                Create and save your notes.
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            id="newNoteBtn"
+                            class="main-btn"
+                            type="button">
+                            + New Note
+                        </button>
+
+                    </div>
+
+
+                    <!-- NOTE EDITOR -->
+
+                    <div class="note-editor">
+
+                        <input
+                            type="text"
+                            id="noteTitle"
+                            placeholder="Note Title"
+                        >
+
+
+                        <textarea
+                            id="noteText"
+                            placeholder="Write your note here...">
+                        </textarea>
+
+
+                        <div class="buttons">
+
+                            <button
+                                id="saveNoteBtn"
+                                class="main-btn"
+                                type="button">
+                                💾 Save Note
+                            </button>
+
+
+                            <button
+                                id="clearBtn"
+                                class="normal-btn"
+                                type="button">
+                                Clear
+                            </button>
+
+
+                            <button
+                                id="copyBtn"
+                                class="normal-btn"
+                                type="button">
+                                📋 Copy
+                            </button>
+
+
+                            <button
+                                id="textBtn"
+                                class="normal-btn"
+                                type="button">
+                                Save as Text
+                            </button>
+
+
+                            <button
+                                id="pdfNoteBtn"
+                                class="normal-btn"
+                                type="button">
+                                Save as PDF
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SAVED NOTES -->
+
+                    <div
+                        id="notesContainer"
+                        class="notes-container">
+                    </div>
+
+                </section>
+
+
+                <!-- ================= PDF PAGE ================= -->
+
+                <section
+                    id="pdfPage"
+                    class="page hidden">
+
+
+                    <div class="page-title">
+
+                        <div>
+
+                            <h1>
+                                PDF Files
+                            </h1>
+
+                            <p>
+                                Upload and open your PDF files.
+                            </p>
+
+                        </div>
+
+
+                        <label
+                            class="main-btn upload-btn">
+
+                            + Upload PDF
+
+                            <input
+                                type="file"
+                                id="pdfInput"
+                                accept=".pdf,application/pdf"
+                                hidden
+                            >
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- PDF LIST -->
+
+                    <div
+                        id="pdfContainer">
+                    </div>
+
+
+                    <!-- PDF VIEWER -->
+
+                    <div
+                        id="pdfViewer"
+                        class="pdf-viewer hidden">
+
+
+                        <div class="viewer-header">
+
+                            <strong id="pdfName">
+                                PDF Viewer
+                            </strong>
+
+
+                            <button
+                                id="closePdf"
+                                class="normal-btn"
+                                type="button">
+                                ✕ Close
+                            </button>
+
+                        </div>
+
+
+                        <iframe
+                            id="pdfFrame"
+                            title="PDF Viewer">
+                        </iframe>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= HELP PAGE ================= -->
+
+                <section
+                    id="helpPage"
+                    class="page hidden">
+
+
+                    <h1>
+                        Quick Notes Help
+                    </h1>
+
+
+                    <div class="help-box">
+
+                        <h3>
+                            Account
+                        </h3>
+
+                        <p>
+                            Create an account using username
+                            and password. After logout,
+                            username and password are cleared.
+                        </p>
+
+
+                        <h3>
+                            Notes
+                        </h3>
+
+                        <p>
+                            Create, save, edit, copy and
+                            delete notes.
+                        </p>
+
+
+                        <h3>
+                            PDF
+                        </h3>
+
+                        <p>
+                            Upload PDF files and open them
+                            inside the application.
+                        </p>
+
+
+                        <h3>
+                            Theme
+                        </h3>
+
+                        <p>
+                            Use the moon/sun button to
+                            change light and dark theme.
+                        </p>
+
+                    </div>
+
+                </section>
+
+            </main>
+
+        </div>
+
+    </div>
+
+
+    <!-- MESSAGE -->
+
+    <div id="message"></div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

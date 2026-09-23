@@ -1,0 +1,736 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+:root {
+
+    --background: #f4f6fb;
+
+    --card: #ffffff;
+
+    --text: #222222;
+
+    --muted: #777777;
+
+    --border: #dddddd;
+
+    --primary: #4f46e5;
+
+    --danger: #dc2626;
+
+    --gray: #eef0f4;
+}
+
+
+body.dark {
+
+    --background: #12151c;
+
+    --card: #1d222c;
+
+    --text: #ffffff;
+
+    --muted: #b5b5b5;
+
+    --border: #353b47;
+
+    --primary: #7168ff;
+
+    --danger: #ef4444;
+
+    --gray: #292f3a;
+}
+
+
+body {
+
+    font-family: Arial, sans-serif;
+
+    background: var(--background);
+
+    color: var(--text);
+
+    min-height: 100vh;
+}
+
+
+.hidden {
+
+    display: none !important;
+}
+
+
+button {
+
+    cursor: pointer;
+
+    border: none;
+}
+
+
+/* ================= LOGIN ================= */
+
+.auth-page {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+}
+
+
+.auth-box {
+
+    width: 420px;
+
+    max-width: 100%;
+
+    background: var(--card);
+
+    padding: 30px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,0.12);
+}
+
+
+.auth-box h1 {
+
+    text-align: center;
+
+    margin-bottom: 8px;
+}
+
+
+.subtitle {
+
+    text-align: center;
+
+    color: var(--muted);
+
+    margin-bottom: 25px;
+}
+
+
+/* TABS */
+
+.tabs {
+
+    display: flex;
+
+    gap: 5px;
+
+    background: var(--gray);
+
+    padding: 5px;
+
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+}
+
+
+.tab {
+
+    width: 50%;
+
+    padding: 10px;
+
+    background: transparent;
+
+    color: var(--text);
+
+    border-radius: 8px;
+}
+
+
+.tab.active {
+
+    background: var(--primary);
+
+    color: white;
+}
+
+
+/* FORMS */
+
+form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+form label {
+
+    font-weight: bold;
+}
+
+
+input,
+textarea {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    outline: none;
+}
+
+
+textarea {
+
+    resize: vertical;
+}
+
+
+/* ================= BUTTONS ================= */
+
+.main-btn {
+
+    background: var(--primary);
+
+    color: white;
+
+    padding: 11px 16px;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+}
+
+
+.main-btn:hover {
+
+    opacity: 0.9;
+}
+
+
+.normal-btn {
+
+    background: var(--gray);
+
+    color: var(--text);
+
+    border: 1px solid var(--border);
+
+    padding: 10px 14px;
+
+    border-radius: 8px;
+}
+
+
+.logout-btn {
+
+    background: var(--danger);
+
+    color: white;
+
+    padding: 10px 14px;
+
+    border-radius: 8px;
+}
+
+
+.small-btn {
+
+    background: var(--gray);
+
+    color: var(--text);
+
+    padding: 10px;
+
+    border-radius: 8px;
+}
+
+
+/* ================= HEADER ================= */
+
+.header {
+
+    height: 70px;
+
+    background: var(--card);
+
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 25px;
+}
+
+
+.header-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* ================= MAIN ================= */
+
+.main-container {
+
+    max-width: 1250px;
+
+    margin: auto;
+
+    padding: 25px;
+
+    display: grid;
+
+    grid-template-columns: 220px 1fr;
+
+    gap: 20px;
+}
+
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 15px;
+
+    padding: 15px;
+
+    height: fit-content;
+}
+
+
+.menu-btn {
+
+    width: 100%;
+
+    text-align: left;
+
+    padding: 13px;
+
+    background: transparent;
+
+    color: var(--text);
+
+    border-radius: 8px;
+
+    margin-bottom: 6px;
+}
+
+
+.menu-btn:hover,
+.menu-btn.active {
+
+    background: var(--primary);
+
+    color: white;
+}
+
+
+.clock-box {
+
+    border-top: 1px solid var(--border);
+
+    margin-top: 15px;
+
+    padding-top: 15px;
+
+    text-align: center;
+}
+
+
+#time {
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    margin-top: 5px;
+}
+
+
+/* ================= CONTENT ================= */
+
+.content {
+
+    min-width: 0;
+}
+
+
+.page-title {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+
+.page-title p {
+
+    color: var(--muted);
+
+    margin-top: 5px;
+}
+
+
+/* ================= NOTES ================= */
+
+.note-editor {
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 15px;
+
+    padding: 18px;
+
+    margin-bottom: 20px;
+}
+
+
+#noteTitle {
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    margin-bottom: 12px;
+}
+
+
+#noteText {
+
+    min-height: 180px;
+}
+
+
+.buttons {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 12px;
+}
+
+
+.notes-container {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(250px, 1fr)
+        );
+
+    gap: 15px;
+}
+
+
+.note-card {
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 13px;
+
+    padding: 16px;
+}
+
+
+.note-card h3 {
+
+    margin-bottom: 10px;
+}
+
+
+.note-content {
+
+    color: var(--muted);
+
+    white-space: pre-wrap;
+
+    line-height: 1.5;
+
+    max-height: 170px;
+
+    overflow: auto;
+}
+
+
+.note-date {
+
+    font-size: 12px;
+
+    color: var(--muted);
+
+    margin: 12px 0;
+}
+
+
+.note-actions {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+}
+
+
+/* ================= PDF ================= */
+
+.upload-btn {
+
+    display: inline-block;
+}
+
+
+.pdf-card {
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    padding: 15px;
+
+    margin-bottom: 10px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.pdf-actions {
+
+    display: flex;
+
+    gap: 7px;
+
+    flex-wrap: wrap;
+}
+
+
+.pdf-viewer {
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    margin-top: 20px;
+}
+
+
+.viewer-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 12px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+#pdfFrame {
+
+    width: 100%;
+
+    height: 650px;
+
+    border: none;
+
+    background: white;
+}
+
+
+/* ================= HELP ================= */
+
+.help-box {
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    line-height: 1.6;
+}
+
+
+.help-box h3 {
+
+    margin-top: 15px;
+}
+
+
+.help-box h3:first-child {
+
+    margin-top: 0;
+}
+
+
+/* ================= MESSAGE ================= */
+
+#message {
+
+    position: fixed;
+
+    top: 85px;
+
+    right: 20px;
+
+    background: #111827;
+
+    color: white;
+
+    padding: 12px 16px;
+
+    border-radius: 8px;
+
+    display: none;
+
+    z-index: 1000;
+}
+
+
+/* ================= PRINT ================= */
+
+@media print {
+
+    body * {
+
+        visibility: hidden;
+    }
+
+    .note-editor,
+    .note-editor * {
+
+        visibility: visible;
+    }
+
+    .note-editor {
+
+        position: absolute;
+
+        left: 0;
+
+        top: 0;
+
+        width: 100%;
+
+        border: none;
+    }
+
+    .buttons {
+
+        display: none;
+    }
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width: 800px) {
+
+    .main-container {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .sidebar {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 5px;
+    }
+
+
+    .menu-btn {
+
+        text-align: center;
+    }
+
+
+    .clock-box {
+
+        grid-column: 1 / -1;
+    }
+
+
+    .page-title {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 10px;
+    }
+
+
+    .pdf-card {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+}
