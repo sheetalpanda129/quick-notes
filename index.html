@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,491 +7,1057 @@
     <title>Quick Notes</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <!-- Excel Library -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+    <!-- Word Library -->
+    <script src="https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js"></script>
 </head>
 
 <body>
 
-    <!-- ================= LOGIN / CREATE ACCOUNT ================= -->
+<!-- ================= LOGIN ================= -->
 
-    <div id="authPage" class="auth-page">
+<section id="authScreen" class="auth-screen">
 
-        <div class="auth-box">
+    <div class="auth-card">
 
-            <h1>📝 Quick Notes</h1>
+        <h1>📝 Quick Notes</h1>
 
-            <p class="subtitle">
-                Save your notes and PDF files easily
-            </p>
+        <p>
+            Notes, documents and personal files in one place.
+        </p>
 
+        <div class="auth-tabs">
 
-            <!-- Tabs -->
+            <button id="loginTab" class="auth-tab active">
+                Login
+            </button>
 
-            <div class="tabs">
+            <button id="signupTab" class="auth-tab">
+                Create Account
+            </button>
 
-                <button
-                    id="loginTab"
-                    class="tab active"
-                    type="button">
-                    Login
-                </button>
-
-                <button
-                    id="registerTab"
-                    class="tab"
-                    type="button">
-                    Create Account
-                </button>
-
-            </div>
+        </div>
 
 
-            <!-- LOGIN FORM -->
+        <!-- LOGIN -->
 
-            <form
-                id="loginForm"
-                autocomplete="off">
+        <form id="loginForm">
 
-                <label for="loginUsername">
-                    Username
-                </label>
+            <label>Username</label>
 
-                <input
-                    type="text"
-                    id="loginUsername"
-                    placeholder="Enter username"
-                    autocomplete="off"
-                    required
-                >
+            <input
+                type="text"
+                id="loginUsername"
+                placeholder="Enter username"
+                required
+            >
 
+            <label>Password</label>
 
-                <label for="loginPassword">
-                    Password
-                </label>
+            <div class="password-box">
 
                 <input
                     type="password"
                     id="loginPassword"
                     placeholder="Enter password"
-                    autocomplete="new-password"
                     required
                 >
 
-
                 <button
-                    type="submit"
-                    class="main-btn">
-                    Login
-                </button>
-
-            </form>
-
-
-            <!-- CREATE ACCOUNT FORM -->
-
-            <form
-                id="registerForm"
-                class="hidden"
-                autocomplete="off">
-
-                <label for="registerUsername">
-                    Create Username
-                </label>
-
-                <input
-                    type="text"
-                    id="registerUsername"
-                    placeholder="Create username"
-                    autocomplete="off"
-                    required
+                    type="button"
+                    class="eye-btn"
+                    data-eye="loginPassword"
                 >
-
-
-                <label for="registerPassword">
-                    Create Password
-                </label>
-
-                <input
-                    type="password"
-                    id="registerPassword"
-                    placeholder="Create password"
-                    autocomplete="new-password"
-                    required
-                >
-
-
-                <label for="confirmPassword">
-                    Confirm Password
-                </label>
-
-                <input
-                    type="password"
-                    id="confirmPassword"
-                    placeholder="Confirm password"
-                    autocomplete="new-password"
-                    required
-                >
-
-
-                <button
-                    type="submit"
-                    class="main-btn">
-                    Create Account
-                </button>
-
-            </form>
-
-        </div>
-
-    </div>
-
-
-    <!-- ================= MAIN APPLICATION ================= -->
-
-    <div
-        id="appPage"
-        class="hidden">
-
-
-        <!-- HEADER -->
-
-        <header class="header">
-
-            <h2>
-                📝 Quick Notes
-            </h2>
-
-
-            <div class="header-right">
-
-                <span id="welcomeUser"></span>
-
-                <button
-                    id="themeBtn"
-                    class="small-btn"
-                    type="button">
-                    🌙
-                </button>
-
-                <button
-                    id="logoutBtn"
-                    class="logout-btn"
-                    type="button">
-                    Logout
+                    👁
                 </button>
 
             </div>
 
-        </header>
+            <button
+                type="submit"
+                class="primary-btn full"
+            >
+                Login
+            </button>
+
+        </form>
 
 
-        <!-- MAIN -->
+        <!-- CREATE ACCOUNT -->
 
-        <div class="main-container">
+        <form id="signupForm" class="hidden">
 
+            <label>Username</label>
 
-            <!-- SIDEBAR -->
+            <input
+                type="text"
+                id="signupUsername"
+                placeholder="Create username"
+                required
+            >
 
-            <aside class="sidebar">
+            <label>Password</label>
+
+            <div class="password-box">
+
+                <input
+                    type="password"
+                    id="signupPassword"
+                    placeholder="Create password"
+                    required
+                >
 
                 <button
-                    class="menu-btn active"
-                    data-page="notesPage"
-                    type="button">
-                    📝 Notes
+                    type="button"
+                    class="eye-btn"
+                    data-eye="signupPassword"
+                >
+                    👁
                 </button>
 
+            </div>
+
+            <label>Confirm Password</label>
+
+            <div class="password-box">
+
+                <input
+                    type="password"
+                    id="signupConfirm"
+                    placeholder="Confirm password"
+                    required
+                >
 
                 <button
-                    class="menu-btn"
-                    data-page="pdfPage"
-                    type="button">
-                    📄 PDF Files
+                    type="button"
+                    class="eye-btn"
+                    data-eye="signupConfirm"
+                >
+                    👁
                 </button>
 
+            </div>
 
-                <button
-                    class="menu-btn"
-                    data-page="helpPage"
-                    type="button">
-                    ℹ️ Help
-                </button>
+            <button
+                type="submit"
+                class="primary-btn full"
+            >
+                Create Account
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
 
 
-                <!-- DATE AND TIME -->
+<!-- ================= MAIN APP ================= -->
 
-                <div class="clock-box">
+<section id="appScreen" class="hidden">
 
-                    <div id="date"></div>
+    <!-- TOP BAR -->
 
-                    <div id="time"></div>
+    <header class="topbar">
+
+        <div class="brand">
+            📝 Quick Notes
+        </div>
+
+        <div class="top-actions">
+
+            <span id="clock"></span>
+
+            <button id="themeToggle">
+                🌙
+            </button>
+
+            <button id="profileBtn">
+                👤 <span id="topUsername"></span>
+            </button>
+
+            <button
+                id="logoutBtn"
+                class="danger-btn"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- LAYOUT -->
+
+    <div class="layout">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <button
+                class="nav-btn active"
+                data-section="dashboard"
+            >
+                🏠 Dashboard
+            </button>
+
+            <button
+                class="nav-btn"
+                data-section="notes"
+            >
+                📝 Notes
+            </button>
+
+            <button
+                class="nav-btn"
+                data-section="documents"
+            >
+                📂 Documents
+            </button>
+
+            <button
+                class="nav-btn"
+                data-section="folders"
+            >
+                📁 Folders
+            </button>
+
+            <button
+                class="nav-btn"
+                data-section="excel"
+            >
+                📊 Excel Sheet
+            </button>
+
+            <button
+                class="nav-btn"
+                data-section="backup"
+            >
+                💾 Backup
+            </button>
+
+            <button
+                class="nav-btn"
+                data-section="settings"
+            >
+                ⚙️ Settings
+            </button>
+
+        </aside>
+
+
+        <!-- CONTENT -->
+
+        <main class="content">
+
+
+            <!-- ================= DASHBOARD ================= -->
+
+            <section
+                id="dashboardSection"
+                class="page-section"
+            >
+
+                <div class="page-head">
+
+                    <div>
+
+                        <h1>Dashboard</h1>
+
+                        <p>
+                            Welcome,
+                            <b id="welcomeUsername"></b>
+                            👋
+                        </p>
+
+                    </div>
+
+                    <button
+                        id="dashboardUpload"
+                        class="primary-btn"
+                    >
+                        ⬆ Upload File
+                    </button>
 
                 </div>
 
-            </aside>
+
+                <div class="global-search">
+
+                    🔎
+
+                    <input
+                        id="globalSearch"
+                        placeholder="Search notes and files..."
+                    >
+
+                </div>
 
 
-            <!-- CONTENT -->
+                <div class="stats-grid">
 
-            <main class="content">
+                    <div class="stat-card">
+                        📝
+                        <b id="statNotes">0</b>
+                        <small>Notes</small>
+                    </div>
+
+                    <div class="stat-card">
+                        📂
+                        <b id="statFiles">0</b>
+                        <small>Files</small>
+                    </div>
+
+                    <div class="stat-card">
+                        📄
+                        <b id="statPDF">0</b>
+                        <small>PDF</small>
+                    </div>
+
+                    <div class="stat-card">
+                        📊
+                        <b id="statExcel">0</b>
+                        <small>Excel</small>
+                    </div>
+
+                    <div class="stat-card">
+                        📘
+                        <b id="statWord">0</b>
+                        <small>Word</small>
+                    </div>
+
+                    <div class="stat-card">
+                        🖼️
+                        <b id="statImages">0</b>
+                        <small>Images</small>
+                    </div>
+
+                </div>
 
 
-                <!-- ================= NOTES PAGE ================= -->
+                <div class="dashboard-grid">
 
-                <section
-                    id="notesPage"
-                    class="page">
+                    <div class="panel">
 
+                        <h2>Quick Actions</h2>
 
-                    <div class="page-title">
+                        <div class="quick-actions">
 
-                        <div>
+                            <button data-go="notes">
+                                📝
+                                <span>New Note</span>
+                            </button>
 
-                            <h1>
-                                My Quick Notes
-                            </h1>
+                            <button data-go="documents">
+                                📂
+                                <span>Documents</span>
+                            </button>
 
-                            <p>
-                                Create and save your notes.
-                            </p>
+                            <button data-go="excel">
+                                📊
+                                <span>Create Excel</span>
+                            </button>
+
+                            <button data-go="folders">
+                                📁
+                                <span>Folders</span>
+                            </button>
 
                         </div>
 
+                    </div>
+
+
+                    <div class="panel">
+
+                        <h2>Recent Files</h2>
+
+                        <div id="recentFiles"></div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <h2>Search Results</h2>
+
+                    <div id="globalResults">
+                        Search notes and files here.
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= NOTES ================= -->
+
+            <section
+                id="notesSection"
+                class="page-section hidden"
+            >
+
+                <div class="page-head">
+
+                    <div>
+
+                        <h1>📝 Notes</h1>
+
+                        <p>
+                            Create, edit, delete, pin and favorite notes.
+                        </p>
+
+                    </div>
+
+                    <button
+                        id="newNoteBtn"
+                        class="primary-btn"
+                    >
+                        ＋ New Note
+                    </button>
+
+                </div>
+
+
+                <div class="toolbar">
+
+                    <input
+                        id="noteSearch"
+                        placeholder="Search notes..."
+                    >
+
+                    <select id="noteFilter">
+
+                        <option value="all">
+                            All Notes
+                        </option>
+
+                        <option value="pinned">
+                            Pinned
+                        </option>
+
+                        <option value="favorite">
+                            Favorites
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <input
+                        id="noteTitle"
+                        class="note-title"
+                        placeholder="Note title"
+                    >
+
+                    <textarea
+                        id="noteContent"
+                        rows="10"
+                        placeholder="Write your note here..."
+                    ></textarea>
+
+
+                    <div class="editor-buttons">
+
+                        <button id="pinNoteBtn">
+                            📌 Pin
+                        </button>
+
+                        <button id="favoriteNoteBtn">
+                            ⭐ Favorite
+                        </button>
+
+                        <button id="copyNoteBtn">
+                            📋 Copy
+                        </button>
+
+                        <button id="pasteNoteBtn">
+                            📎 Paste
+                        </button>
+
+                        <button id="saveTxtBtn">
+                            TXT
+                        </button>
+
+                        <button id="printNoteBtn">
+                            PDF / Print
+                        </button>
 
                         <button
-                            id="newNoteBtn"
-                            class="main-btn"
-                            type="button">
-                            + New Note
+                            id="clearNoteBtn"
+                            class="danger-outline"
+                        >
+                            Clear
+                        </button>
+
+                        <button
+                            id="saveNoteBtn"
+                            class="primary-btn"
+                        >
+                            💾 Save Note
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="notesList"
+                    class="notes-grid"
+                ></div>
+
+            </section>
+
+
+
+            <!-- ================= DOCUMENTS ================= -->
+
+            <section
+                id="documentsSection"
+                class="page-section hidden"
+            >
+
+                <div class="page-head">
+
+                    <div>
+
+                        <h1>📂 Documents & Files</h1>
+
+                        <p>
+                            Upload, open, download, delete and search files.
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <button id="createExcelFromDocuments">
+                            📊 Create Excel
+                        </button>
+
+                        <button
+                            id="uploadBtn"
+                            class="primary-btn"
+                        >
+                            ⬆ Upload Files
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <input
+                    type="file"
+                    id="fileInput"
+                    multiple
+                    class="hidden"
+                    accept=".pdf,.xls,.xlsx,.doc,.docx,.txt,image/*"
+                >
+
+
+                <div
+                    id="dropZone"
+                    class="upload-box"
+                >
+
+                    📁
+
+                    <h2>
+                        Upload Your Files
+                    </h2>
+
+                    <p>
+                        PDF, Excel, Word, Images and TXT
+                    </p>
+
+                    <button id="chooseFiles">
+                        Choose Files
+                    </button>
+
+                </div>
+
+
+                <div class="toolbar">
+
+                    <input
+                        id="fileSearch"
+                        placeholder="Search files..."
+                    >
+
+                    <select id="fileTypeFilter">
+
+                        <option value="all">
+                            All Types
+                        </option>
+
+                        <option value="pdf">
+                            PDF
+                        </option>
+
+                        <option value="excel">
+                            Excel
+                        </option>
+
+                        <option value="word">
+                            Word
+                        </option>
+
+                        <option value="image">
+                            Images
+                        </option>
+
+                        <option value="text">
+                            Text
+                        </option>
+
+                    </select>
+
+                    <select id="fileFolderFilter">
+
+                        <option value="all">
+                            All Folders
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div
+                    id="fileList"
+                    class="file-grid"
+                ></div>
+
+            </section>
+
+
+
+            <!-- ================= FOLDERS ================= -->
+
+            <section
+                id="foldersSection"
+                class="page-section hidden"
+            >
+
+                <div class="page-head">
+
+                    <div>
+
+                        <h1>📁 Folders</h1>
+
+                        <p>
+                            Create folders and upload files inside them.
+                        </p>
+
+                    </div>
+
+                    <button
+                        id="createFolderBtn"
+                        class="primary-btn"
+                    >
+                        ＋ Create Folder
+                    </button>
+
+                </div>
+
+
+                <div class="folder-bar">
+
+                    <button id="uploadToFolderBtn">
+                        ⬆ Upload to Selected Folder
+                    </button>
+
+                    <b id="selectedFolderText">
+                        No folder selected
+                    </b>
+
+                </div>
+
+
+                <input
+                    type="file"
+                    id="folderFileInput"
+                    multiple
+                    class="hidden"
+                    accept=".pdf,.xls,.xlsx,.doc,.docx,.txt,image/*"
+                >
+
+
+                <div
+                    id="folderList"
+                    class="folder-grid"
+                ></div>
+
+
+                <div
+                    id="openedFolder"
+                    class="panel hidden"
+                >
+
+                    <div class="page-head">
+
+                        <h2 id="openedFolderName"></h2>
+
+                        <button id="closeFolderBtn">
+                            Close Folder
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="openedFolderFiles"
+                        class="file-grid"
+                    ></div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= EXCEL ================= -->
+
+            <section
+                id="excelSection"
+                class="page-section hidden"
+            >
+
+                <div class="page-head">
+
+                    <div>
+
+                        <h1>📊 Create Excel Sheet</h1>
+
+                        <p>
+                            Type anything, add rows and columns and save as Excel.
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <button id="addRowBtn">
+                            ＋ Row
+                        </button>
+
+                        <button id="addColumnBtn">
+                            ＋ Column
+                        </button>
+
+                        <button
+                            id="saveExcelBtn"
+                            class="primary-btn"
+                        >
+                            💾 Save Excel
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="toolbar">
+
+                    <input
+                        id="excelFileName"
+                        value="My-Excel-Sheet.xlsx"
+                    >
+
+                    <input
+                        id="excelSheetName"
+                        value="Sheet1"
+                    >
+
+                    <button id="clearExcelBtn">
+                        Clear
+                    </button>
+
+                </div>
+
+
+                <div class="panel table-container">
+
+                    <table id="excelTable"></table>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= BACKUP ================= -->
+
+            <section
+                id="backupSection"
+                class="page-section hidden"
+            >
+
+                <div class="page-head">
+
+                    <div>
+
+                        <h1>💾 Backup & Restore</h1>
+
+                        <p>
+                            Backup your Quick Notes data.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="two-columns">
+
+                    <div class="panel">
+
+                        <h2>Download Backup</h2>
+
+                        <p>
+                            Download your notes and folders as backup.
+                        </p>
+
+                        <button
+                            id="backupBtn"
+                            class="primary-btn"
+                        >
+                            ⬇ Download Backup
                         </button>
 
                     </div>
 
 
-                    <!-- NOTE EDITOR -->
+                    <div class="panel">
 
-                    <div class="note-editor">
+                        <h2>Restore Backup</h2>
 
                         <input
-                            type="text"
-                            id="noteTitle"
-                            placeholder="Note Title"
+                            id="restoreInput"
+                            type="file"
+                            accept=".json"
                         >
 
-
-                        <textarea
-                            id="noteText"
-                            placeholder="Write your note here...">
-                        </textarea>
-
-
-                        <div class="buttons">
-
-                            <button
-                                id="saveNoteBtn"
-                                class="main-btn"
-                                type="button">
-                                💾 Save Note
-                            </button>
-
-
-                            <button
-                                id="clearBtn"
-                                class="normal-btn"
-                                type="button">
-                                Clear
-                            </button>
-
-
-                            <button
-                                id="copyBtn"
-                                class="normal-btn"
-                                type="button">
-                                📋 Copy
-                            </button>
-
-
-                            <button
-                                id="textBtn"
-                                class="normal-btn"
-                                type="button">
-                                Save as Text
-                            </button>
-
-
-                            <button
-                                id="pdfNoteBtn"
-                                class="normal-btn"
-                                type="button">
-                                Save as PDF
-                            </button>
-
-                        </div>
+                        <button id="restoreBtn">
+                            Restore
+                        </button>
 
                     </div>
 
+                </div>
 
-                    <!-- SAVED NOTES -->
-
-                    <div
-                        id="notesContainer"
-                        class="notes-container">
-                    </div>
-
-                </section>
+            </section>
 
 
-                <!-- ================= PDF PAGE ================= -->
 
-                <section
-                    id="pdfPage"
-                    class="page hidden">
+            <!-- ================= SETTINGS ================= -->
 
+            <section
+                id="settingsSection"
+                class="page-section hidden"
+            >
 
-                    <div class="page-title">
+                <div class="page-head">
 
-                        <div>
+                    <div>
 
-                            <h1>
-                                PDF Files
-                            </h1>
-
-                            <p>
-                                Upload and open your PDF files.
-                            </p>
-
-                        </div>
-
-
-                        <label
-                            class="main-btn upload-btn">
-
-                            + Upload PDF
-
-                            <input
-                                type="file"
-                                id="pdfInput"
-                                accept=".pdf,application/pdf"
-                                hidden
-                            >
-
-                        </label>
-
-                    </div>
-
-
-                    <!-- PDF LIST -->
-
-                    <div
-                        id="pdfContainer">
-                    </div>
-
-
-                    <!-- PDF VIEWER -->
-
-                    <div
-                        id="pdfViewer"
-                        class="pdf-viewer hidden">
-
-
-                        <div class="viewer-header">
-
-                            <strong id="pdfName">
-                                PDF Viewer
-                            </strong>
-
-
-                            <button
-                                id="closePdf"
-                                class="normal-btn"
-                                type="button">
-                                ✕ Close
-                            </button>
-
-                        </div>
-
-
-                        <iframe
-                            id="pdfFrame"
-                            title="PDF Viewer">
-                        </iframe>
-
-                    </div>
-
-                </section>
-
-
-                <!-- ================= HELP PAGE ================= -->
-
-                <section
-                    id="helpPage"
-                    class="page hidden">
-
-
-                    <h1>
-                        Quick Notes Help
-                    </h1>
-
-
-                    <div class="help-box">
-
-                        <h3>
-                            Account
-                        </h3>
+                        <h1>⚙️ Settings</h1>
 
                         <p>
-                            Create an account using username
-                            and password. After logout,
-                            username and password are cleared.
-                        </p>
-
-
-                        <h3>
-                            Notes
-                        </h3>
-
-                        <p>
-                            Create, save, edit, copy and
-                            delete notes.
-                        </p>
-
-
-                        <h3>
-                            PDF
-                        </h3>
-
-                        <p>
-                            Upload PDF files and open them
-                            inside the application.
-                        </p>
-
-
-                        <h3>
-                            Theme
-                        </h3>
-
-                        <p>
-                            Use the moon/sun button to
-                            change light and dark theme.
+                            Appearance and account settings.
                         </p>
 
                     </div>
 
-                </section>
+                </div>
 
-            </main>
 
-        </div>
+                <div class="two-columns">
+
+                    <div class="panel">
+
+                        <h2>Brightness</h2>
+
+                        <input
+                            id="brightnessRange"
+                            type="range"
+                            min="70"
+                            max="130"
+                            value="100"
+                        >
+
+                        <b id="brightnessValue">
+                            100%
+                        </b>
+
+                    </div>
+
+
+                    <div class="panel">
+
+                        <h2>Theme</h2>
+
+                        <button data-theme="light">
+                            ☀️ Light
+                        </button>
+
+                        <button data-theme="dark">
+                            🌙 Dark
+                        </button>
+
+                        <button data-theme="blue">
+                            🔵 Blue
+                        </button>
+
+                        <button data-theme="green">
+                            🟢 Green
+                        </button>
+
+                    </div>
+
+
+                    <div class="panel">
+
+                        <h2>Profile</h2>
+
+                        <button id="settingsProfileBtn">
+                            👤 Open Profile
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
 
     </div>
 
-
-    <!-- MESSAGE -->
-
-    <div id="message"></div>
+</section>
 
 
-    <script src="script.js"></script>
+
+<!-- ================= PROFILE MODAL ================= -->
+
+<div
+    id="profileModal"
+    class="modal hidden"
+>
+
+    <div class="modal-card">
+
+        <button
+            class="modal-close"
+            data-close="profileModal"
+        >
+            ×
+        </button>
+
+        <h2>👤 Profile</h2>
+
+        <label>
+            Change Username
+        </label>
+
+        <input
+            id="newUsername"
+            placeholder="New username"
+        >
+
+        <button
+            id="changeUsernameBtn"
+            class="primary-btn full"
+        >
+            Change Username
+        </button>
+
+
+        <hr>
+
+
+        <label>
+            Change Password
+        </label>
+
+        <input
+            id="newPassword"
+            type="password"
+            placeholder="New password"
+        >
+
+        <button
+            id="changePasswordBtn"
+            class="full"
+        >
+            Change Password
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= FILE VIEWER ================= -->
+
+<div
+    id="viewerModal"
+    class="modal hidden"
+>
+
+    <div class="viewer-card">
+
+        <div class="viewer-header">
+
+            <h2 id="viewerTitle">
+                File Viewer
+            </h2>
+
+            <div>
+
+                <button id="viewerDownloadBtn">
+                    ⬇ Download
+                </button>
+
+                <button
+                    class="modal-close"
+                    data-close="viewerModal"
+                >
+                    ×
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="viewerBody"
+            class="viewer-body"
+        ></div>
+
+    </div>
+
+</div>
+
+
+<div id="toast"></div>
+
+
+<script src="script.js"></script>
 
 </body>
-
 </html>
